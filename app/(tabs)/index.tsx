@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+
 import { Image, StyleSheet, Platform } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
@@ -5,7 +7,22 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
+async function fetchTest() {
+  const response = await fetch('/api/test');
+  const data = await response.json();
+  return data.info
+}
+
 export default function HomeScreen() {
+  const [ info, setInfo ] = useState('');
+
+  useEffect(() => {
+    (async function doAsync() {
+      const info = await fetchTest();
+      setInfo(info);
+    })();
+  }, []);
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
@@ -22,16 +39,7 @@ export default function HomeScreen() {
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
+          Server response: {info}
         </ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>

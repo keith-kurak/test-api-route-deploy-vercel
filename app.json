@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "test-api-route-deploy",
-    "slug": "test-api-route-deploy",
+    "name": "test-api-route-deploy-vercel",
+    "slug": "test-api-route-deploy-vercel",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -19,11 +19,16 @@
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
+      "output": "server",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router",
+      [
+        "expo-router",
+        {
+          "origin": "https://test-api-route-deploy-vercel-mqvoslqjr-keith-kuraks-projects.vercel.app/"
+        }
+      ],
       [
         "expo-splash-screen",
         {

@@ -1,5 +1,5 @@
 {
-  "name": "test-api-route-deploy",
+  "name": "test-api-route-deploy-vercel",
   "main": "expo-router/entry",
   "version": "1.0.0",
   "scripts": {
@@ -9,7 +9,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest --watchAll",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "vercel-build": "expo export -p web"
   },
   "jest": {
     "preset": "jest-expo"
